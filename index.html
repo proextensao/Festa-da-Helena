@@ -225,7 +225,34 @@
 
     @keyframes scaleUp { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
     @keyframes bounce { from { transform: translateY(0); } to { transform: translateY(-10px); } }
+    
+/* ── AJUSTES EXCLUSIVOS PARA COMPUTADOR (Telas Maiores) ── */
+    @media (min-width: 600px) {
+      body {
+        align-items: center; /* Centraliza no meio da tela do PC */
+        padding: 40px 20px;
+        /* Volta o fundo colorido bonito atrás do convite no PC */
+        background: radial-gradient(circle at top center, #ffcbe6 0%, #e2bbfd 50%, #b8e3ff 100%); 
+      }
 
+      .card {
+        border-radius: 35px; /* Volta as bordas arredondadas */
+        min-height: auto; /* Tira a obrigação de encostar no rodapé do monitor */
+        box-shadow: 0 15px 40px rgba(150, 50, 200, 0.3); /* Volta a sombra */
+        padding: 25px; /* Devolve o espaço em branco nas laterais */
+        border: 4px solid #fff; /* Borda branca grossa estilo cartão */
+      }
+
+      .convite-imagem-container {
+        width: 100%; /* Tira aquele tamanho esticado */
+        margin: 0; /* Remove a margem negativa do celular */
+        border-radius: 20px; /* Arredonda as pontas da imagem */
+      }
+
+      .admin-secreto {
+        margin-top: 20px;
+      }
+    }
   </style>
 </head>
 <body>
