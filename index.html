@@ -14,7 +14,8 @@
       margin: 0 auto;
       border-radius: 20px;
       overflow: hidden;
-      box-shadow: 0 15px 40px rgba(150, 50, 200, 0.3);
+      box-shadow: 0 15px 40p
+        x rgba(150, 50, 200, 0.3);
     }
 
     .imagem-fundo {
@@ -287,58 +288,24 @@
 <div class="card">
 
   <!-- ══ TELA: CONVITE ══ -->
-  <div id="tela-convite" class="tela ativa">
-    <div class="dino-header">
-      <div class="eyebrow">Alerta de Fofura e Diversão!</div>
-      <h1 class="title">Helena<br><span style="font-size: 24px; color: #c026a8; text-shadow: none;">vai fazer 8 anos!</span></h1>
+    <div id="tela-convite" class="tela ativa">
+    
+    <div class="convite-imagem-container">
+      <img src="convite-helena.jpg" alt="Convite da Helena" class="imagem-fundo" />
+      
+      <a href="https://maps.google.com/?q=Shopping+Via+Brasil+T-Rex+Park" target="_blank" class="btn-invisivel zona-mapa"></a>
+      
+      <div onclick="ir('tela-form')" class="btn-invisivel zona-confirmar"></div>
     </div>
 
-    <p class="subtitle">
-      E está preparando uma festa com gosto de <strong>chiclete</strong>, <strong>marshmallow</strong> e muita aventura!<br>
-      Você não vai querer ficar de fora desse reino de <strong>doces e dinossauros</strong>, né? 💖
-    </p>
-
-    <div class="info-grid">
-      <div class="info-box">
-        <small>DATA</small>
-        <strong>04 de julho</strong>
-        (Sábado)
-      </div>
-      <div class="info-box">
-        <small>HORÁRIO</small>
-        <strong>Às 18:00h</strong>
-        Não se atrase!
-      </div>
-      <div class="info-box full">
-        <small>LOCAL</small>
-        <strong>T-Rex Park – Shopping Via Brasil</strong>
-      </div>
-    </div>
-
-    <a href="https://maps.google.com/?q=Shopping+Via+Brasil+T-Rex+Park" target="_blank" class="map-link">
-      📍 CLIQUE AQUI PARA VER A LOCALIZAÇÃO
-    </a>
-
-    <div class="dress-code">
-      <span class="dress-code-title">👗 DRESS CODE:</span>
-      <p>Traga o seu melhor sorriso e muita energia para brincar! Prepare-se para uma overdose de <strong>Fini</strong> e diversão jurássica! 🦖🍬</p>
-    </div>
-
-    <div class="prazo-box">
-      Para que o nosso estoque de Fini não acabe, confirme se você vem até o dia 28/06!
-    </div>
-
-    <button class="btn-pink" onclick="ir('tela-form')">
-      Confirmar Presença! 🎉
-    </button>
-
-    <div class="admin-section">
+    <div class="admin-secreto admin-section">
       <p class="admin-label">Área exclusiva da mamãe/papai 🦕</p>
       <div class="admin-row">
         <input type="password" id="admin-senha" placeholder="Senha" />
-        <button class="btn-pink" style="width:auto;padding:12px 20px;font-size:14px;box-shadow: 0 4px 0 #b30f66;" onclick="abrirAdmin()">Ver</button>
+        <button class="btn-pink" style="width:auto;padding:12px 20px;font-size:14px;" onclick="abrirAdmin()">Ver</button>
       </div>
     </div>
+
   </div>
 
   <!-- ══ TELA: FORMULÁRIO ══ -->
