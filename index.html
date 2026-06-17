@@ -337,13 +337,12 @@
     let vemEscolha = null;
 
     // ── LÓGICA DA MÚSICA ──
+    // ── LÓGICA DA MÚSICA ──
     window.tocarMusica = function() {
       const audio = document.getElementById('musica-fundo');
       const btn = document.getElementById('btn-musica');
-      
       if (audio.paused) {
-        audio.play();
-        btn.innerHTML = '⏸️';
+        audio.play().then(() => { btn.innerHTML = '⏸️'; }).catch(e => console.log(e));
       } else {
         audio.pause();
         btn.innerHTML = '🎵';
@@ -353,22 +352,16 @@
     const iniciarAudio = function() {
       const audio = document.getElementById('musica-fundo');
       const btn = document.getElementById('btn-musica');
-      
-      if (audio.paused) {
-        audio.play().then(() => {
-          btn.innerHTML = '⏸️'; 
-        }).catch((erro) => {
-          console.log("Navegador bloqueou autoplay.");
-        });
-      }
-      
-      document.body.removeEventListener('click', iniciarAudio);
-      document.body.removeEventListener('touchstart', iniciarAudio);
+      audio.play().then(() => {
+        btn.innerHTML = '⏸️';
+        document.body.removeEventListener('click', iniciarAudio);
+        document.body.removeEventListener('touchstart', iniciarAudio);
+      }).catch(e => console.log("Aguardando interação do usuário..."));
     };
 
     document.body.addEventListener('click', iniciarAudio);
     document.body.addEventListener('touchstart', iniciarAudio);
-
+    
     // ── NAVEGAÇÃO E FORMULÁRIO ──
     window.ir = function(id) {
       document.querySelectorAll('.tela').forEach(t => t.classList.remove('ativa'));
