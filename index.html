@@ -9,26 +9,25 @@
         /* ── ESTILOS PARA A IMAGEM DO CONVITE ── */
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    body {
+        body {
       font-family: 'Nunito', sans-serif;
       min-height: 100vh;
-      background: radial-gradient(circle at top center, #ffcbe6 0%, #e2bbfd 50%, #b8e3ff 100%);
+      background-color: #fae8f4; /* Rosa extraído exatamente do rodapé da arte */
       display: flex;
-      align-items: flex-start; /* Força o conteúdo a colar no topo */
+      align-items: flex-start;
       justify-content: center;
-      padding: 0; /* Tira as margens do navegador */
+      padding: 0;
       margin: 0;
     }
 
     .card {
-      /* ⬅️ Gradiente rosa descendo do final da imagem até ficar branco */
-      background: linear-gradient(to bottom, #ffcde9 0%, #fdf0f7 35%, #ffffff 100%);
+      background-color: #fae8f4; /* Mesma cor do fundo para sumir com as bordas */
       border-radius: 0;
       padding: 20px 15px;
       width: 100%;
       max-width: 500px;
       min-height: 100vh;
-      box-shadow: 0 15px 40px rgba(150, 50, 200, 0.3);
+      box-shadow: none; /* Removida a sombra para parecer um app de tela cheia */
       border: none;
     }
 
@@ -36,9 +35,21 @@
     .convite-imagem-container {
       position: relative;
       width: calc(100% + 30px);
-      margin: -20px -15px 0 -15px; /* ⬅️ O zero aqui gruda a imagem perfeitamente no gradiente rosa! */
+      margin: -20px -15px 0 -15px;
       overflow: hidden;
       display: block;
+    }
+
+    /* 🪄 TRUQUE DE MESTRE: Degradê esfumaçado para a imagem derreter no fundo */
+    .convite-imagem-container::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; /* Evita aquela linha branca chata do navegador */
+      left: 0;
+      width: 100%;
+      height: 50px; /* Altura do efeito esfumaçado */
+      background: linear-gradient(to bottom, rgba(250, 232, 244, 0) 0%, #fae8f4 100%);
+      pointer-events: none; /* Garante que os botões por baixo continuem clicáveis */
     }
 
     .imagem-fundo {
@@ -70,12 +81,13 @@
 
     /* Área do Admin discretamente abaixo da imagem */
     .admin-secreto {
-      margin: 25px auto 0; /* ⬅️ Dá o espaço de respiro empurrando a área admin para baixo */
+      margin: 30px auto 0; /* Espaço para respirar abaixo da imagem */
       padding: 10px;
       text-align: center;
     }
-    .admin-section { padding-top: 15px; border-top: 2px dotted #d946a8; } /* ⬅️ Linha mais escura pra destacar no rosa */
-    .admin-label { font-size: 13px; color: #a855f7; margin-bottom: 10px; font-weight: 800;} /* ⬅️ Cor da letra mais visível */
+    
+    .admin-section { padding-top: 15px; border-top: 2px dotted #d946a8; }
+    .admin-label { font-size: 13px; color: #a855f7; margin-bottom: 10px; font-weight: 800;}
     .admin-row { display: flex; gap: 8px; justify-content: center; }
 
 
