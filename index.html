@@ -340,33 +340,29 @@
     const SENHA_ADMIN = "helena8";
     let vemEscolha = null;
 
-   // ── LÓGICA DA MÚSICA - INTERAÇÃO AO ROLAR OU CLICAR ──
-  const audio = document.getElementById('musica-fundo');
+  // ── LÓGICA DA MÚSICA - INTERAÇÃO COM YOUTUBE ──
+  const iframe = document.getElementById('video-youtube');
   const btn = document.getElementById('btn-musica');
 
-  const iniciarMusica = () => {
-    audio.play().then(() => {
-      btn.innerHTML = '⏸️';
-      // Remove os eventos após a primeira interação para não repetir
-      document.body.removeEventListener('click', iniciarMusica);
-      document.body.removeEventListener('touchstart', iniciarMusica);
-      window.removeEventListener('scroll', iniciarMusica);
-    }).catch(e => console.log("Aguardando interação do usuário..."));
+  const liberarMusica = () => {
+    iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+    btn.innerHTML = '⏸️';
+    document.body.removeEventListener('click', liberarMusica);
+    document.body.removeEventListener('touchstart', liberarMusica);
+    window.removeEventListener('scroll', liberarMusica);
   };
 
-  // Escuta clique, toque na tela e rolagem da página
-  document.body.addEventListener('click', iniciarMusica);
-  document.body.addEventListener('touchstart', iniciarMusica);
-  window.addEventListener('scroll', iniciarMusica);
+  document.body.addEventListener('click', liberarMusica);
+  document.body.addEventListener('touchstart', liberarMusica);
+  window.addEventListener('scroll', liberarMusica);
 
-  // Função do botão manual
   window.tocarMusica = function() {
-    if (audio.paused) {
-      audio.play();
-      btn.innerHTML = '⏸️';
+    if (btn.innerHTML === '🎵') {
+        iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+        btn.innerHTML = '⏸️';
     } else {
-      audio.pause();
-      btn.innerHTML = '🎵';
+        iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+        btn.innerHTML = '🎵';
     }
   }
     // ── NAVEGAÇÃO E FORMULÁRIO ──
