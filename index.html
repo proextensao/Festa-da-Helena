@@ -4,87 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>🦕 Festa da Helena – 8 Anos!</title>
+  
   <!-- Códigos para o WhatsApp puxar a capa do convite -->
   <meta property="og:title" content="🦕 Festa da Helena – 8 Anos!" />
   <meta property="og:description" content="Você não vai querer ficar de fora desse reino de doces e dinossauros! Confirme sua presença 💖" />
   <meta property="og:image" content="https://proextensao.github.io/Festa-da-Helena/convite-helena.jpg" />
   <meta property="og:type" content="website" />
+
   <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  
   <style>
-        /* ── ESTILOS PARA A IMAGEM DO CONVITE ── */
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-        body {
-      font-family: 'Nunito', sans-serif;
-      min-height: 100vh;
-      background-color: #fae8f4; /* Rosa extraído exatamente do rodapé da arte */
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      padding: 0;
-      margin: 0;
-    }
-
-    .card {
-      background-color: #fae8f4; /* Mesma cor do fundo para sumir com as bordas */
-      border-radius: 0;
-      padding: 20px 15px;
-      width: 100%;
-      max-width: 500px;
-      min-height: 100vh;
-      box-shadow: none; /* Removida a sombra para parecer um app de tela cheia */
-      border: none;
-    }
-
-    /* ── ESTILOS PARA A IMAGEM DO CONVITE ── */
-    .convite-imagem-container {
-      position: relative;
-      width: calc(100% + 30px);
-      margin: -20px -15px 0 -15px;
-      overflow: hidden;
-      display: block;
-    }
-
-    /* 🪄 TRUQUE DE MESTRE: Degradê esfumaçado para a imagem derreter no fundo */
-    .convite-imagem-container::after {
-      content: '';
-      position: absolute;
-      bottom: -1px; /* Evita aquela linha branca chata do navegador */
-      left: 0;
-      width: 100%;
-      height: 50px; /* Altura do efeito esfumaçado */
-      background: linear-gradient(to bottom, rgba(250, 232, 244, 0) 0%, #fae8f4 100%);
-      pointer-events: none; /* Garante que os botões por baixo continuem clicáveis */
-    }
-
-    .imagem-fundo {
-      width: 100%;
-      display: block;
-    }
-
-    /* Botões invisíveis que ficam por cima da imagem */
-    .btn-invisivel {
-      position: absolute;
-      background: rgba(255, 255, 255, 0);
-      cursor: pointer;
-      border-radius: 15px;
-    }
-
-    .zona-mapa {
-      top: 67%; 
-      left: 34.5%;
-      width: 31%;
-      height: 6.5%;
-    }
-
-    .zona-confirmar {
-      top: 64.5%; 
-      left: 68%;
-      width: 29%;
-      height: 6.5%;
-    }
-
-    /* Área do Admin discretamente abaixo da imagem */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
@@ -155,7 +84,7 @@
     .admin-label { font-size: 13px; color: #a855f7; margin-bottom: 15px; font-weight: 800;}
     .admin-row { display: flex; gap: 10px; justify-content: center; align-items: center; }
 
-    /* ── BOTÕES ROSAS (Isso estava faltando!) ── */
+    /* ── BOTÕES ROSAS ── */
     .btn-pink {
       display: inline-block;
       width: 100%;
@@ -231,45 +160,49 @@
     @keyframes scaleUp { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
     @keyframes bounce { from { transform: translateY(0); } to { transform: translateY(-10px); } }
     
-/* ── AJUSTES EXCLUSIVOS PARA COMPUTADOR (Telas Maiores) ── */
+    /* ── AJUSTES EXCLUSIVOS PARA COMPUTADOR ── */
     @media (min-width: 600px) {
       body {
-        align-items: center; /* Centraliza no meio da tela do PC */
+        align-items: center; 
         padding: 40px 20px;
-        /* Volta o fundo colorido bonito atrás do convite no PC */
         background: radial-gradient(circle at top center, #ffcbe6 0%, #e2bbfd 50%, #b8e3ff 100%); 
       }
 
       .card {
-        border-radius: 35px; /* Volta as bordas arredondadas */
-        min-height: auto; /* Tira a obrigação de encostar no rodapé do monitor */
-        box-shadow: 0 15px 40px rgba(150, 50, 200, 0.3); /* Volta a sombra */
-        padding: 25px; /* Devolve o espaço em branco nas laterais */
-        border: 4px solid #fff; /* Borda branca grossa estilo cartão */
+        border-radius: 35px; 
+        min-height: auto; 
+        box-shadow: 0 15px 40px rgba(150, 50, 200, 0.3); 
+        padding: 25px; 
+        border: 4px solid #fff; 
+        background-color: #fce8f4; /* Volta o fundo rosa dentro do cartão no PC */
       }
 
       .convite-imagem-container {
-        width: 100%; /* Tira aquele tamanho esticado */
-        margin: 0; /* Remove a margem negativa do celular */
-        border-radius: 20px; /* Arredonda as pontas da imagem */
+        width: 100%; 
+        margin: 0; 
+        border-radius: 20px; 
       }
 
-      .admin-secreto {
-        margin-top: 20px;
+      .admin-secreto { margin-top: 20px; }
+      
+      .musica-flutuante {
+        top: 20px;
+        left: 20px;
       }
     }
+    
     /* ── BOTÃO DE MÚSICA SUTIL E MENOR ── */
     .musica-flutuante {
       position: fixed;
-      top: 8px;  /* ⬅️ Bem coladinho no teto */
-      left: 8px; /* ⬅️ Bem no canto esquerdo, fora do rosto do dinossauro */
-      background: rgba(255, 94, 176, 0.7); /* ⬅️ Deixei levemente transparente para ficar elegante */
+      top: 8px;  
+      left: 8px; 
+      background: rgba(255, 94, 176, 0.7); 
       color: white;
       border: 1.5px solid rgba(255, 255, 255, 0.8);
       border-radius: 50%;
-      width: 30px;  /* ⬅️ Bem menor e delicado */
+      width: 30px;  
       height: 30px;
-      font-size: 14px; /* ⬅️ Ícone menor */
+      font-size: 14px; 
       cursor: pointer;
       box-shadow: 0 2px 6px rgba(233, 30, 140, 0.2);
       z-index: 1000;
@@ -284,286 +217,273 @@
   </style>
 </head>
 <body>
-<!-- ══ TOCADOR DE MÚSICA ══ -->
+
+  <!-- ══ TOCADOR DE MÚSICA & BOTÃO ══ -->
   <audio id="musica-fundo" src="helena.mp3" preload="auto" loop></audio>
-  <!-- ══ TELA: CONVITE ══ -->
+  <button id="btn-musica" class="musica-flutuante" onclick="tocarMusica()">🎵</button>
+
+  <div class="card">
+    <!-- ══ TELA: CONVITE ══ -->
     <div id="tela-convite" class="tela ativa">
-    
-    <div class="convite-imagem-container">
-      <img src="convite-helena.jpg" alt="Convite da Helena" class="imagem-fundo" />
-      
-      <a href="https://maps.google.com/?q=Shopping+Via+Brasil+T-Rex+Park" target="_blank" class="btn-invisivel zona-mapa"></a>
-      
-      <div onclick="ir('tela-form')" class="btn-invisivel zona-confirmar"></div>
-    </div>
-
-    <div class="admin-secreto admin-section">
-      <p class="admin-label">Área exclusiva da mamãe/papai 🦕</p>
-      <div class="admin-row">
-        <input type="password" id="admin-senha" placeholder="Senha" />
-        <button class="btn-pink" style="width:auto;padding:12px 20px;font-size:14px;" onclick="abrirAdmin()">Ver</button>
+      <div class="convite-imagem-container">
+        <img src="convite-helena.jpg" alt="Convite da Helena" class="imagem-fundo" />
+        <a href="https://maps.google.com/?q=Shopping+Via+Brasil+T-Rex+Park" target="_blank" class="btn-invisivel zona-mapa"></a>
+        <div onclick="ir('tela-form')" class="btn-invisivel zona-confirmar"></div>
       </div>
-    </div>
 
-  </div>
-
-  <!-- ══ TELA: FORMULÁRIO ══ -->
-  <div id="tela-form" class="tela">
-    <button class="back-btn" onclick="ir('tela-convite')">← Voltar</button>
-    <span class="form-emoji">🦕</span>
-    <h2 class="form-title">Confirmar Presença</h2>
-
-    <label class="field-label">Seu nome completo</label>
-    <input type="text" id="f-nome" placeholder="Ex: Ana Silva" />
-
-    <label class="field-label">Você vai à festa?</label>
-    <div class="toggle-row">
-      <button class="toggle-btn" id="btn-sim" onclick="escolherVem('sim')">✅ Sim, vou!</button>
-      <button class="toggle-btn" id="btn-nao" onclick="escolherVem('nao')">❌ Não consigo</button>
-    </div>
-
-    <div id="campos-extras" style="display:none;">
-      <div class="num-row">
-        <div>
-          <label class="field-label">Crianças</label>
-          <input type="number" id="f-criancas" value="1" min="0" max="10" />
-        </div>
-        <div>
-          <label class="field-label">Adultos</label>
-          <input type="number" id="f-adultos" value="1" min="1" max="10" />
+      <div class="admin-secreto admin-section">
+        <p class="admin-label">Área exclusiva da mamãe/papai 🦕</p>
+        <div class="admin-row">
+          <input type="password" id="admin-senha" placeholder="Senha" />
+          <button class="btn-pink" style="width:auto;padding:12px 20px;font-size:14px;" onclick="abrirAdmin()">Ver</button>
         </div>
       </div>
     </div>
 
-    <label class="field-label">Recado para a Helena (opcional) 💜</label>
-    <textarea id="f-recado" placeholder="Parabéns, princesa dino! 🦕"></textarea>
+    <!-- ══ TELA: FORMULÁRIO ══ -->
+    <div id="tela-form" class="tela">
+      <button class="back-btn" onclick="ir('tela-convite')">← Voltar</button>
+      <span class="form-emoji">🦕</span>
+      <h2 class="form-title">Confirmar Presença</h2>
 
-    <button class="btn-pink" id="btn-confirmar" onclick="confirmar()" disabled style="margin-top:25px;">
-      Confirmar agora! 🍬
-    </button>
-  </div>
+      <label class="field-label">Seu nome completo</label>
+      <input type="text" id="f-nome" placeholder="Ex: Ana Silva" />
 
-  <!-- ══ TELA: SUCESSO ══ -->
-  <div id="tela-sucesso" class="tela">
-    <span class="sucesso-emoji" id="sucesso-emoji">🦕</span>
-    <h2 class="sucesso-title" id="sucesso-titulo">Uhuuu! Até lá! 🎉</h2>
-    <p class="sucesso-text" id="sucesso-texto">
-      A Helena vai ficar super feliz de te ver no reino dos dinos e doces! 💜
-    </p>
-    <p class="sucesso-info">📅 04 de julho · 18h · T-Rex Park</p>
-    <button class="btn-pink" onclick="voltarInicio()" style="margin-top:25px;">
-      Voltar ao convite
-    </button>
-  </div>
-
-  <!-- ══ TELA: ADMIN ══ -->
-  <div id="tela-admin" class="tela">
-    <button class="back-btn" onclick="ir('tela-convite')">← Voltar ao convite</button>
-    <h2 class="form-title" style="margin-bottom: 5px;">🦕 Painel da Festinha</h2>
-    <p style="text-align:center;color:#a855b5;font-size:14px;font-weight:700;margin-bottom:20px;">
-      Controle do estoque de Fini 🎉
-    </p>
-
-    <div class="stats-row">
-      <div class="stat-box" style="background:#fce4f5; border: 2px solid #f9a8d4;">
-        <span class="stat-num" id="stat-confirmados">0</span>
-        <span class="stat-lbl">Confirmados</span>
+      <label class="field-label">Você vai à festa?</label>
+      <div class="toggle-row">
+        <button class="toggle-btn" id="btn-sim" onclick="escolherVem('sim')">✅ Sim, vou!</button>
+        <button class="toggle-btn" id="btn-nao" onclick="escolherVem('nao')">❌ Não consigo</button>
       </div>
-      <div class="stat-box" style="background:#f3e4fc; border: 2px solid #c4b5fd;">
-        <span class="stat-num" id="stat-criancas">0</span>
-        <span class="stat-lbl">Crianças</span>
+
+      <div id="campos-extras" style="display:none;">
+        <div class="num-row">
+          <div>
+            <label class="field-label">Crianças</label>
+            <input type="number" id="f-criancas" value="1" min="0" max="10" />
+          </div>
+          <div>
+            <label class="field-label">Adultos</label>
+            <input type="number" id="f-adultos" value="1" min="1" max="10" />
+          </div>
+        </div>
       </div>
-      <div class="stat-box" style="background:#ffe4e6; border: 2px solid #fda4af;">
-        <span class="stat-num" id="stat-naovem">0</span>
-        <span class="stat-lbl">Não vêm</span>
-      </div>
+
+      <label class="field-label">Recado para a Helena (opcional) 💜</label>
+      <textarea id="f-recado" placeholder="Parabéns, princesa dino! 🦕"></textarea>
+
+      <button class="btn-pink" id="btn-confirmar" onclick="confirmar()" disabled style="margin-top:25px;">
+        Confirmar agora! 🍬
+      </button>
     </div>
 
-    <div id="lista-respostas"></div>
+    <!-- ══ TELA: SUCESSO ══ -->
+    <div id="tela-sucesso" class="tela">
+      <span class="sucesso-emoji" id="sucesso-emoji">🦕</span>
+      <h2 class="sucesso-title" id="sucesso-titulo">Uhuuu! Até lá! 🎉</h2>
+      <p class="sucesso-text" id="sucesso-texto">
+        A Helena vai ficar super feliz de te ver no reino dos dinos e doces! 💜
+      </p>
+      <p class="sucesso-info">📅 04 de julho · 18h · T-Rex Park</p>
+      <button class="btn-pink" onclick="voltarInicio()" style="margin-top:25px;">
+        Voltar ao convite
+      </button>
+    </div>
+
+    <!-- ══ TELA: ADMIN ══ -->
+    <div id="tela-admin" class="tela">
+      <button class="back-btn" onclick="ir('tela-convite')">← Voltar ao convite</button>
+      <h2 class="form-title" style="margin-bottom: 5px;">🦕 Painel da Festinha</h2>
+      <p style="text-align:center;color:#a855b5;font-size:14px;font-weight:700;margin-bottom:20px;">
+        Controle do estoque de Fini 🎉
+      </p>
+
+      <div class="stats-row">
+        <div class="stat-box" style="background:#fce4f5; border: 2px solid #f9a8d4;">
+          <span class="stat-num" id="stat-confirmados">0</span>
+          <span class="stat-lbl">Confirmados</span>
+        </div>
+        <div class="stat-box" style="background:#f3e4fc; border: 2px solid #c4b5fd;">
+          <span class="stat-num" id="stat-criancas">0</span>
+          <span class="stat-lbl">Crianças</span>
+        </div>
+        <div class="stat-box" style="background:#ffe4e6; border: 2px solid #fda4af;">
+          <span class="stat-num" id="stat-naovem">0</span>
+          <span class="stat-lbl">Não vêm</span>
+        </div>
+      </div>
+
+      <div id="lista-respostas"></div>
+    </div>
   </div>
 
-</div>
+  <script type="module">
+    // 1. Importando as ferramentas do Firebase
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-<script type="module">
-  // 1. Importando as ferramentas do Firebase direto do Google
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-  import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-  // 2. SUAS CREDENCIAIS DO FIREBASE
-  const firebaseConfig = {
-    apiKey: "AIzaSyAYVMQwv2z-x2uPbVhCvr1EKblpwdVSk8E",
-    authDomain: "festa-da.firebaseapp.com",
-    projectId: "festa-da",
-    storageBucket: "festa-da.firebasestorage.app",
-    messagingSenderId: "483665771874",
-    appId: "1:483665771874:web:082f9c527d6e40f544003b"
-  };
-
-  // 3. Inicializando o Firebase e o Banco de Dados
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-
-  const SENHA_ADMIN = "helena8";
-  let vemEscolha = null;
-  // Função que o botão vai usar para pausar/tocar
-  window.tocarMusica = function() {
-    const audio = document.getElementById('musica-fundo');
-    const btn = document.getElementById('btn-musica');
-    
-    if (audio.paused) {
-      audio.play();
-      btn.innerHTML = '⏸️';
-    } else {
-      audio.pause();
-      btn.innerHTML = '🎵';
-    }
-  }
-
-  // 🪄 O TRUQUE MÁGICO DO AUTOPLAY
-  // Fica esperando o convidado dar o primeiro toque na tela
-  const iniciarAudio = function() {
-    const audio = document.getElementById('musica-fundo');
-    const btn = document.getElementById('btn-musica');
-    
-    // Tenta dar o play
-    if (audio.paused) {
-      audio.play().then(() => {
-        btn.innerHTML = '⏸️'; // Muda o ícone avisando que está tocando
-      }).catch((erro) => {
-        console.log("O navegador bloqueou o áudio até o usuário interagir mais.");
-      });
-    }
-    
-    // Depois que tocar a primeira vez, a gente remove esse "espião" para não dar erro
-    document.body.removeEventListener('click', iniciarAudio);
-    document.body.removeEventListener('touchstart', iniciarAudio);
-  };
-
-  // Ativa o espião de toques na tela inteira
-  document.body.addEventListener('click', iniciarAudio);
-  document.body.addEventListener('touchstart', iniciarAudio);
-
-  // Como estamos usando "module", precisamos atrelar as funções ao "window" para o HTML enxergar
-  window.ir = function(id) {
-    document.querySelectorAll('.tela').forEach(t => t.classList.remove('ativa'));
-    document.getElementById(id).classList.add('ativa');
-  }
-
-  window.escolherVem = function(opcao) {
-    vemEscolha = opcao;
-    document.getElementById('btn-sim').classList.toggle('active', opcao === 'sim');
-    document.getElementById('btn-nao').classList.toggle('active', opcao === 'nao');
-    document.getElementById('campos-extras').style.display = opcao === 'sim' ? 'block' : 'none';
-    document.getElementById('btn-confirmar').disabled = false;
-  }
-
-  window.confirmar = async function() {
-    const nome = document.getElementById('f-nome').value.trim();
-    if (!nome) { alert('Por favor, informe seu nome! 🦕'); return; }
-
-    const btn = document.getElementById('btn-confirmar');
-    btn.disabled = true;
-    btn.textContent = "Enviando... ⏳"; 
-
-    const registro = {
-      nome,
-      vem: vemEscolha,
-      criancas: vemEscolha === 'sim' ? parseInt(document.getElementById('f-criancas').value) || 0 : 0,
-      adultos:  vemEscolha === 'sim' ? parseInt(document.getElementById('f-adultos').value) || 0 : 0,
-      recado: document.getElementById('f-recado').value.trim(),
-      data: new Date().toLocaleString('pt-BR')
+    // 2. SUAS CREDENCIAIS DO FIREBASE
+    const firebaseConfig = {
+      apiKey: "AIzaSyAYVMQwv2z-x2uPbVhCvr1EKblpwdVSk8E",
+      authDomain: "festa-da.firebaseapp.com",
+      projectId: "festa-da",
+      storageBucket: "festa-da.firebasestorage.app",
+      messagingSenderId: "483665771874",
+      appId: "1:483665771874:web:082f9c527d6e40f544003b"
     };
 
-    try {
-      // 4. Salvando no banco de dados "respostas" do Firestore
-      await addDoc(collection(db, "respostas"), registro);
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const SENHA_ADMIN = "helena8";
+    let vemEscolha = null;
 
-      if (vemEscolha === 'sim') {
-        document.getElementById('sucesso-emoji').textContent = '🦕';
-        document.getElementById('sucesso-titulo').textContent = 'Uhuuu! Até lá! 🎉';
-        document.getElementById('sucesso-texto').textContent = 'A Helena vai ficar super feliz de te ver no reino dos dinos e doces! 💜';
+    // ── LÓGICA DA MÚSICA ──
+    window.tocarMusica = function() {
+      const audio = document.getElementById('musica-fundo');
+      const btn = document.getElementById('btn-musica');
+      
+      if (audio.paused) {
+        audio.play();
+        btn.innerHTML = '⏸️';
       } else {
-        document.getElementById('sucesso-emoji').textContent = '🦖';
-        document.getElementById('sucesso-titulo').textContent = 'Que pena! 😢';
-        document.getElementById('sucesso-texto').textContent = 'Sentiremos sua falta no reino jurássico! Obrigado por avisar. 🦕';
+        audio.pause();
+        btn.innerHTML = '🎵';
       }
-
-      ir('tela-sucesso');
-    } catch (e) {
-      console.error("Erro ao adicionar documento: ", e);
-      alert("Ops! Deu um erro ao salvar. Tente novamente! 🦕");
-    } finally {
-      btn.textContent = "Confirmar agora! 🍬";
-      btn.disabled = false;
     }
-  }
 
-  window.voltarInicio = function() {
-    document.getElementById('f-nome').value = '';
-    document.getElementById('f-recado').value = '';
-    document.getElementById('f-criancas').value = 1;
-    document.getElementById('f-adultos').value = 1;
-    document.getElementById('btn-sim').classList.remove('active');
-    document.getElementById('btn-nao').classList.remove('active');
-    document.getElementById('campos-extras').style.display = 'none';
-    document.getElementById('btn-confirmar').disabled = true;
-    vemEscolha = null;
-    ir('tela-convite');
-  }
-
-  window.abrirAdmin = async function() {
-    const senha = document.getElementById('admin-senha').value;
-    if (senha !== SENHA_ADMIN) { alert('Senha incorreta! 🦖'); return; }
-    
-    ir('tela-admin');
-    const lista = document.getElementById('lista-respostas');
-    lista.innerHTML = '<p class="empty-msg">Carregando os dinos... ⏳</p>';
-    
-    await carregarAdmin();
-  }
-
-  window.carregarAdmin = async function() {
-    const lista = document.getElementById('lista-respostas');
-    
-    try {
-      // 5. Buscando todas as respostas no banco de dados Firestore
-      const querySnapshot = await getDocs(collection(db, "respostas"));
-      const respostas = [];
-      querySnapshot.forEach((doc) => {
-        respostas.push(doc.data());
-      });
-
-      const confirmados = respostas.filter(r => r.vem === 'sim');
-      const naoVem = respostas.filter(r => r.vem === 'nao');
-      const totalCriancas = confirmados.reduce((a, r) => a + (r.criancas || 0), 0);
-
-      document.getElementById('stat-confirmados').textContent = confirmados.length;
-      document.getElementById('stat-criancas').textContent = totalCriancas;
-      document.getElementById('stat-naovem').textContent = naoVem.length;
-
-      if (respostas.length === 0) {
-        lista.innerHTML = '<p class="empty-msg">Nenhuma confirmação ainda 🦖</p>';
-        return;
+    const iniciarAudio = function() {
+      const audio = document.getElementById('musica-fundo');
+      const btn = document.getElementById('btn-musica');
+      
+      if (audio.paused) {
+        audio.play().then(() => {
+          btn.innerHTML = '⏸️'; 
+        }).catch((erro) => {
+          console.log("Navegador bloqueou autoplay.");
+        });
       }
+      
+      document.body.removeEventListener('click', iniciarAudio);
+      document.body.removeEventListener('touchstart', iniciarAudio);
+    };
 
-      lista.innerHTML = respostas.map(r => `
-        <div class="resposta-card ${r.vem}">
-          <div class="resposta-head">
-            <span class="resposta-nome">${r.nome}</span>
-            <span class="badge ${r.vem}">${r.vem === 'sim' ? 'Vai!' : 'Não vai'}</span>
+    document.body.addEventListener('click', iniciarAudio);
+    document.body.addEventListener('touchstart', iniciarAudio);
+
+    // ── NAVEGAÇÃO E FORMULÁRIO ──
+    window.ir = function(id) {
+      document.querySelectorAll('.tela').forEach(t => t.classList.remove('ativa'));
+      document.getElementById(id).classList.add('ativa');
+    }
+
+    window.escolherVem = function(opcao) {
+      vemEscolha = opcao;
+      document.getElementById('btn-sim').classList.toggle('active', opcao === 'sim');
+      document.getElementById('btn-nao').classList.toggle('active', opcao === 'nao');
+      document.getElementById('campos-extras').style.display = opcao === 'sim' ? 'block' : 'none';
+      document.getElementById('btn-confirmar').disabled = false;
+    }
+
+    window.confirmar = async function() {
+      const nome = document.getElementById('f-nome').value.trim();
+      if (!nome) { alert('Por favor, informe seu nome! 🦕'); return; }
+
+      const btn = document.getElementById('btn-confirmar');
+      btn.disabled = true;
+      btn.textContent = "Enviando... ⏳"; 
+
+      const registro = {
+        nome,
+        vem: vemEscolha,
+        criancas: vemEscolha === 'sim' ? parseInt(document.getElementById('f-criancas').value) || 0 : 0,
+        adultos:  vemEscolha === 'sim' ? parseInt(document.getElementById('f-adultos').value) || 0 : 0,
+        recado: document.getElementById('f-recado').value.trim(),
+        data: new Date().toLocaleString('pt-BR')
+      };
+
+      try {
+        await addDoc(collection(db, "respostas"), registro);
+
+        if (vemEscolha === 'sim') {
+          document.getElementById('sucesso-emoji').textContent = '🦕';
+          document.getElementById('sucesso-titulo').textContent = 'Uhuuu! Até lá! 🎉';
+          document.getElementById('sucesso-texto').textContent = 'A Helena vai ficar super feliz de te ver no reino dos dinos e doces! 💜';
+        } else {
+          document.getElementById('sucesso-emoji').textContent = '🦖';
+          document.getElementById('sucesso-titulo').textContent = 'Que pena! 😢';
+          document.getElementById('sucesso-texto').textContent = 'Sentiremos sua falta no reino jurássico! Obrigado por avisar. 🦕';
+        }
+
+        ir('tela-sucesso');
+      } catch (e) {
+        console.error(e);
+        alert("Ops! Deu um erro ao salvar. Tente novamente! 🦕");
+      } finally {
+        btn.textContent = "Confirmar agora! 🍬";
+        btn.disabled = false;
+      }
+    }
+
+    window.voltarInicio = function() {
+      document.getElementById('f-nome').value = '';
+      document.getElementById('f-recado').value = '';
+      document.getElementById('f-criancas').value = 1;
+      document.getElementById('f-adultos').value = 1;
+      document.getElementById('btn-sim').classList.remove('active');
+      document.getElementById('btn-nao').classList.remove('active');
+      document.getElementById('campos-extras').style.display = 'none';
+      document.getElementById('btn-confirmar').disabled = true;
+      vemEscolha = null;
+      ir('tela-convite');
+    }
+
+    // ── ADMIN ──
+    window.abrirAdmin = async function() {
+      const senha = document.getElementById('admin-senha').value;
+      if (senha !== SENHA_ADMIN) { alert('Senha incorreta! 🦖'); return; }
+      
+      ir('tela-admin');
+      document.getElementById('lista-respostas').innerHTML = '<p class="empty-msg">Carregando os dinos... ⏳</p>';
+      
+      await carregarAdmin();
+    }
+
+    window.carregarAdmin = async function() {
+      const lista = document.getElementById('lista-respostas');
+      
+      try {
+        const querySnapshot = await getDocs(collection(db, "respostas"));
+        const respostas = [];
+        querySnapshot.forEach((doc) => { respostas.push(doc.data()); });
+
+        const confirmados = respostas.filter(r => r.vem === 'sim');
+        const naoVem = respostas.filter(r => r.vem === 'nao');
+        const totalCriancas = confirmados.reduce((a, r) => a + (r.criancas || 0), 0);
+
+        document.getElementById('stat-confirmados').textContent = confirmados.length;
+        document.getElementById('stat-criancas').textContent = totalCriancas;
+        document.getElementById('stat-naovem').textContent = naoVem.length;
+
+        if (respostas.length === 0) {
+          lista.innerHTML = '<p class="empty-msg">Nenhuma confirmação ainda 🦖</p>';
+          return;
+        }
+
+        lista.innerHTML = respostas.map(r => `
+          <div class="resposta-card ${r.vem}">
+            <div class="resposta-head">
+              <span class="resposta-nome">${r.nome}</span>
+              <span class="badge ${r.vem}">${r.vem === 'sim' ? 'Vai!' : 'Não vai'}</span>
+            </div>
+            ${r.vem === 'sim' ? `<div class="resposta-detail">👦 ${r.criancas} criança(s) · 👨‍👩‍👦 ${r.adultos} adulto(s)</div>` : ''}
+            ${r.recado ? `<div class="resposta-recado">💬 "${r.recado}"</div>` : ''}
+            <div class="resposta-data">${r.data}</div>
           </div>
-          ${r.vem === 'sim' ? `<div class="resposta-detail">👦 ${r.criancas} criança(s) · 👨‍👩‍👦 ${r.adultos} adulto(s)</div>` : ''}
-          ${r.recado ? `<div class="resposta-recado">💬 "${r.recado}"</div>` : ''}
-          <div class="resposta-data">${r.data}</div>
-        </div>
-      `).join('');
-    } catch (e) {
-      console.error("Erro ao carregar os dados: ", e);
-      lista.innerHTML = '<p class="empty-msg" style="color:red;">Erro ao buscar no banco de dados! 🦖</p>';
+        `).join('');
+      } catch (e) {
+        console.error(e);
+        lista.innerHTML = '<p class="empty-msg" style="color:red;">Erro ao buscar no banco de dados! 🦖</p>';
+      }
     }
-  }
-</script>
-
+  </script>
 </body>
 </html>
-
