@@ -258,20 +258,20 @@
         margin-top: 20px;
       }
     }
-    /* ── BOTÃO DE MÚSICA FLUTUANTE ── */
+    /* ── BOTÃO DE MÚSICA SUTIL E MENOR ── */
     .musica-flutuante {
       position: fixed;
-      top: 20px;  /* ⬅️ Mudamos para o topo! */
-      left: 20px; /* ⬅️ Colocamos na esquerda para não tampar a logo da Fini */
-      background: linear-gradient(to bottom, #ff5eb0, #e91e8c);
+      top: 8px;  /* ⬅️ Bem coladinho no teto */
+      left: 8px; /* ⬅️ Bem no canto esquerdo, fora do rosto do dinossauro */
+      background: rgba(255, 94, 176, 0.7); /* ⬅️ Deixei levemente transparente para ficar elegante */
       color: white;
-      border: 2px solid #fff; /* Bordinha um pouco mais fina */
+      border: 1.5px solid rgba(255, 255, 255, 0.8);
       border-radius: 50%;
-      width: 45px;  /* ⬅️ Botão um pouco menor e mais delicado */
-      height: 45px;
-      font-size: 20px;
+      width: 30px;  /* ⬅️ Bem menor e delicado */
+      height: 30px;
+      font-size: 14px; /* ⬅️ Ícone menor */
       cursor: pointer;
-      box-shadow: 0 4px 15px rgba(233, 30, 140, 0.4);
+      box-shadow: 0 2px 6px rgba(233, 30, 140, 0.2);
       z-index: 1000;
       display: flex;
       align-items: center;
@@ -284,14 +284,9 @@
   </style>
 </head>
 <body>
-  <audio id="musica-fundo" loop>
-    <source src="helena.mp3" type="audio/mpeg">
-  </audio>
-  <button id="btn-musica" class="musica-flutuante" onclick="tocarMusica()">
-    🎵
-  </button>
-<div class="card">
-
+ <!-- ══ TOCADOR DE MÚSICA ══ -->
+  <audio id="musica-fundo" src="https://proextensao.github.io/Festa-da-Helena/helena.mp3" preload="auto" loop></audio>
+  <button id="btn-musica" class="musica-flutuante" onclick="tocarMusica()">🎵</button>
   <!-- ══ TELA: CONVITE ══ -->
     <div id="tela-convite" class="tela ativa">
     
