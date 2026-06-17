@@ -19,6 +19,7 @@
     body {
       font-family: 'Nunito', sans-serif;
       min-height: 100vh;
+      /* Cor exata do rodapé da imagem para mesclar perfeitamente sem esfumaçar */
       background-color: #fce8f4; 
       display: flex;
       align-items: flex-start;
@@ -28,9 +29,9 @@
     }
 
     .card {
-      background-color: transparent;
+      background-color: transparent; /* Deixa o fundo transparente para usar a cor do body */
       border-radius: 0;
-      padding: 0 15px 20px 15px; 
+      padding: 0 15px 20px 15px; /* Tira o espaço do topo para a imagem grudar lá em cima */
       width: 100%;
       max-width: 500px;
       min-height: 100vh;
@@ -38,6 +39,7 @@
       border: none;
     }
 
+    /* ── ESTILOS PARA A IMAGEM DO CONVITE ── */
     .convite-imagem-container {
       position: relative;
       width: calc(100% + 30px);
@@ -50,6 +52,7 @@
       display: block;
     }
 
+    /* Botões invisíveis que ficam por cima da imagem */
     .btn-invisivel {
       position: absolute;
       background: rgba(255, 255, 255, 0); 
@@ -71,6 +74,7 @@
       height: 6.5%;
     }
 
+    /* ── ADMIN / ÁREA EXCLUSIVA (Abaixo da Imagem) ── */
     .admin-secreto {
       margin: 20px auto 0;
       padding: 10px;
@@ -80,6 +84,7 @@
     .admin-label { font-size: 13px; color: #a855f7; margin-bottom: 15px; font-weight: 800;}
     .admin-row { display: flex; gap: 10px; justify-content: center; align-items: center; }
 
+    /* ── BOTÕES ROSAS ── */
     .btn-pink {
       display: inline-block;
       width: 100%;
@@ -100,6 +105,7 @@
     .btn-pink:active { transform: translateY(4px); box-shadow: 0 0 0 #b30f66; }
     .btn-pink:disabled { background: #ccc; box-shadow: 0 4px 0 #999; cursor: not-allowed; border-color: #eee; color: #fff; }
 
+    /* ── FORMULÁRIO E INPUTS ── */
     input[type="text"], input[type="password"], input[type="number"], textarea {
       width: 100%; border: 2px solid #f9c6ef; border-radius: 16px; padding: 12px 14px;
       font-family: 'Nunito', sans-serif; font-size: 15px; font-weight: 700; color: #555;
@@ -123,6 +129,7 @@
     .num-row { display: flex; gap: 15px; }
     .num-row > div { flex: 1; }
 
+    /* ── SUCESSO E ADMIN ── */
     .sucesso-emoji { font-size: 80px; text-align: center; display: block; margin-bottom: 10px; animation: bounce 1s infinite alternate; }
     .sucesso-title { font-family: 'Fredoka One', cursive; color: #c026a8; text-align: center; font-size: 30px; margin-bottom: 15px; }
     .sucesso-text { text-align: center; color: #7c3aed; font-weight: 700; line-height: 1.6; font-size: 15px; }
@@ -146,12 +153,14 @@
     .resposta-data { font-size: 11px; color: #9ca3af; margin-top: 8px; font-weight: 600;}
     .empty-msg { text-align: center; color: #9ca3af; font-size: 15px; padding: 30px 0; font-weight: 700;}
 
+    /* ── TRANSIÇÕES DE TELAS ── */
     .tela { display: none; }
     .tela.ativa { display: block; animation: scaleUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
 
     @keyframes scaleUp { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
     @keyframes bounce { from { transform: translateY(0); } to { transform: translateY(-10px); } }
     
+    /* ── AJUSTES EXCLUSIVOS PARA COMPUTADOR ── */
     @media (min-width: 600px) {
       body {
         align-items: center; 
@@ -165,7 +174,7 @@
         box-shadow: 0 15px 40px rgba(150, 50, 200, 0.3); 
         padding: 25px; 
         border: 4px solid #fff; 
-        background-color: #fce8f4;
+        background-color: #fce8f4; /* Volta o fundo rosa dentro do cartão no PC */
       }
 
       .convite-imagem-container {
@@ -185,15 +194,15 @@
     /* ── BOTÃO DE MÚSICA SUTIL E MENOR ── */
     .musica-flutuante {
       position: fixed;
-      top: 50px;  /* Botão posicionado abaixo do topo */
-      left: 20px; /* Distância da esquerda */
+      top: 8px;  
+      left: 8px; 
       background: rgba(255, 94, 176, 0.7); 
       color: white;
       border: 1.5px solid rgba(255, 255, 255, 0.8);
       border-radius: 50%;
-      width: 35px; 
-      height: 35px;
-      font-size: 16px; 
+      width: 30px;  
+      height: 30px;
+      font-size: 14px; 
       cursor: pointer;
       box-shadow: 0 2px 6px rgba(233, 30, 140, 0.2);
       z-index: 1000;
