@@ -261,15 +261,15 @@
     /* ── BOTÃO DE MÚSICA FLUTUANTE ── */
     .musica-flutuante {
       position: fixed;
-      bottom: 20px;
-      right: 20px;
+      top: 20px;  /* ⬅️ Mudamos para o topo! */
+      left: 20px; /* ⬅️ Colocamos na esquerda para não tampar a logo da Fini */
       background: linear-gradient(to bottom, #ff5eb0, #e91e8c);
       color: white;
-      border: 3px solid #fff;
+      border: 2px solid #fff; /* Bordinha um pouco mais fina */
       border-radius: 50%;
-      width: 55px;
-      height: 55px;
-      font-size: 24px;
+      width: 45px;  /* ⬅️ Botão um pouco menor e mais delicado */
+      height: 45px;
+      font-size: 20px;
       cursor: pointer;
       box-shadow: 0 4px 15px rgba(233, 30, 140, 0.4);
       z-index: 1000;
