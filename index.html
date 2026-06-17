@@ -372,17 +372,35 @@
 
 </div>
 
-<script>
-  // Script original mantido intacto para preservar a funcionalidade
+<script type="module">
+  // 1. Importando as ferramentas do Firebase direto do Google
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+  // 2. SUAS CREDENCIAIS DO FIREBASE
+  const firebaseConfig = {
+    apiKey: "AIzaSyAYVMQwv2z-x2uPbVhCvr1EKblpwdVSk8E",
+    authDomain: "festa-da.firebaseapp.com",
+    projectId: "festa-da",
+    storageBucket: "festa-da.firebasestorage.app",
+    messagingSenderId: "483665771874",
+    appId: "1:483665771874:web:082f9c527d6e40f544003b"
+  };
+
+  // 3. Inicializando o Firebase e o Banco de Dados
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
   const SENHA_ADMIN = "helena8";
   let vemEscolha = null;
 
-  function ir(id) {
+  // Como estamos usando "module", precisamos atrelar as funções ao "window" para o HTML enxergar
+  window.ir = function(id) {
     document.querySelectorAll('.tela').forEach(t => t.classList.remove('ativa'));
     document.getElementById(id).classList.add('ativa');
   }
 
-  function escolherVem(opcao) {
+  window.escolherVem = function(opcao) {
     vemEscolha = opcao;
     document.getElementById('btn-sim').classList.toggle('active', opcao === 'sim');
     document.getElementById('btn-nao').classList.toggle('active', opcao === 'nao');
@@ -390,9 +408,13 @@
     document.getElementById('btn-confirmar').disabled = false;
   }
 
-  function confirmar() {
+  window.confirmar = async function() {
     const nome = document.getElementById('f-nome').value.trim();
     if (!nome) { alert('Por favor, informe seu nome! 🦕'); return; }
+
+    const btn = document.getElementById('btn-confirmar');
+    btn.disabled = true;
+    btn.textContent = "Enviando... ⏳"; 
 
     const registro = {
       nome,
@@ -403,24 +425,31 @@
       data: new Date().toLocaleString('pt-BR')
     };
 
-    const atual = JSON.parse(localStorage.getItem('helena-rsvp') || '[]');
-    atual.push(registro);
-    localStorage.setItem('helena-rsvp', JSON.stringify(atual));
+    try {
+      // 4. Salvando no banco de dados "respostas" do Firestore
+      await addDoc(collection(db, "respostas"), registro);
 
-    if (vemEscolha === 'sim') {
-      document.getElementById('sucesso-emoji').textContent = '🦕';
-      document.getElementById('sucesso-titulo').textContent = 'Uhuuu! Até lá! 🎉';
-      document.getElementById('sucesso-texto').textContent = 'A Helena vai ficar super feliz de te ver no reino dos dinos e doces! 💜';
-    } else {
-      document.getElementById('sucesso-emoji').textContent = '🦖';
-      document.getElementById('sucesso-titulo').textContent = 'Que pena! 😢';
-      document.getElementById('sucesso-texto').textContent = 'Sentiremos sua falta no reino jurássico! Obrigado por avisar. 🦕';
+      if (vemEscolha === 'sim') {
+        document.getElementById('sucesso-emoji').textContent = '🦕';
+        document.getElementById('sucesso-titulo').textContent = 'Uhuuu! Até lá! 🎉';
+        document.getElementById('sucesso-texto').textContent = 'A Helena vai ficar super feliz de te ver no reino dos dinos e doces! 💜';
+      } else {
+        document.getElementById('sucesso-emoji').textContent = '🦖';
+        document.getElementById('sucesso-titulo').textContent = 'Que pena! 😢';
+        document.getElementById('sucesso-texto').textContent = 'Sentiremos sua falta no reino jurássico! Obrigado por avisar. 🦕';
+      }
+
+      ir('tela-sucesso');
+    } catch (e) {
+      console.error("Erro ao adicionar documento: ", e);
+      alert("Ops! Deu um erro ao salvar. Tente novamente! 🦕");
+    } finally {
+      btn.textContent = "Confirmar agora! 🍬";
+      btn.disabled = false;
     }
-
-    ir('tela-sucesso');
   }
 
-  function voltarInicio() {
+  window.voltarInicio = function() {
     document.getElementById('f-nome').value = '';
     document.getElementById('f-recado').value = '';
     document.getElementById('f-criancas').value = 1;
@@ -433,42 +462,59 @@
     ir('tela-convite');
   }
 
-  function abrirAdmin() {
+  window.abrirAdmin = async function() {
     const senha = document.getElementById('admin-senha').value;
     if (senha !== SENHA_ADMIN) { alert('Senha incorreta! 🦖'); return; }
-    carregarAdmin();
+    
     ir('tela-admin');
+    const lista = document.getElementById('lista-respostas');
+    lista.innerHTML = '<p class="empty-msg">Carregando os dinos... ⏳</p>';
+    
+    await carregarAdmin();
   }
 
-  function carregarAdmin() {
-    const respostas = JSON.parse(localStorage.getItem('helena-rsvp') || '[]');
-    const confirmados = respostas.filter(r => r.vem === 'sim');
-    const naoVem = respostas.filter(r => r.vem === 'nao');
-    const totalCriancas = confirmados.reduce((a, r) => a + (r.criancas || 0), 0);
-
-    document.getElementById('stat-confirmados').textContent = confirmados.length;
-    document.getElementById('stat-criancas').textContent = totalCriancas;
-    document.getElementById('stat-naovem').textContent = naoVem.length;
-
+  window.carregarAdmin = async function() {
     const lista = document.getElementById('lista-respostas');
-    if (respostas.length === 0) {
-      lista.innerHTML = '<p class="empty-msg">Nenhuma confirmação ainda 🦖</p>';
-      return;
-    }
+    
+    try {
+      // 5. Buscando todas as respostas no banco de dados Firestore
+      const querySnapshot = await getDocs(collection(db, "respostas"));
+      const respostas = [];
+      querySnapshot.forEach((doc) => {
+        respostas.push(doc.data());
+      });
 
-    lista.innerHTML = respostas.map(r => `
-      <div class="resposta-card ${r.vem}">
-        <div class="resposta-head">
-          <span class="resposta-nome">${r.nome}</span>
-          <span class="badge ${r.vem}">${r.vem === 'sim' ? 'Vai!' : 'Não vai'}</span>
+      const confirmados = respostas.filter(r => r.vem === 'sim');
+      const naoVem = respostas.filter(r => r.vem === 'nao');
+      const totalCriancas = confirmados.reduce((a, r) => a + (r.criancas || 0), 0);
+
+      document.getElementById('stat-confirmados').textContent = confirmados.length;
+      document.getElementById('stat-criancas').textContent = totalCriancas;
+      document.getElementById('stat-naovem').textContent = naoVem.length;
+
+      if (respostas.length === 0) {
+        lista.innerHTML = '<p class="empty-msg">Nenhuma confirmação ainda 🦖</p>';
+        return;
+      }
+
+      lista.innerHTML = respostas.map(r => `
+        <div class="resposta-card ${r.vem}">
+          <div class="resposta-head">
+            <span class="resposta-nome">${r.nome}</span>
+            <span class="badge ${r.vem}">${r.vem === 'sim' ? 'Vai!' : 'Não vai'}</span>
+          </div>
+          ${r.vem === 'sim' ? `<div class="resposta-detail">👦 ${r.criancas} criança(s) · 👨‍👩‍👦 ${r.adultos} adulto(s)</div>` : ''}
+          ${r.recado ? `<div class="resposta-recado">💬 "${r.recado}"</div>` : ''}
+          <div class="resposta-data">${r.data}</div>
         </div>
-        ${r.vem === 'sim' ? `<div class="resposta-detail">👦 ${r.criancas} criança(s) · 👨‍👩‍👦 ${r.adultos} adulto(s)</div>` : ''}
-        ${r.recado ? `<div class="resposta-recado">💬 "${r.recado}"</div>` : ''}
-        <div class="resposta-data">${r.data}</div>
-      </div>
-    `).join('');
+      `).join('');
+    } catch (e) {
+      console.error("Erro ao carregar os dados: ", e);
+      lista.innerHTML = '<p class="empty-msg" style="color:red;">Erro ao buscar no banco de dados! 🦖</p>';
+    }
   }
 </script>
+
 </body>
 </html>
 
