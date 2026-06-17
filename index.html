@@ -340,36 +340,35 @@
     const SENHA_ADMIN = "helena8";
     let vemEscolha = null;
 
-    // ── LÓGICA DA MÚSICA ──
-    // ── LÓGICA DA MÚSICA ──
-   window.tocarMusica = function() {
-    const btn = document.getElementById('btn-musica');
-    const iframe = document.getElementById('video-youtube');
-    
-    if (btn.innerHTML === '🎵') {
-        // Toca o vídeo
-        iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
-        btn.innerHTML = '⏸️';
+   // ── LÓGICA DA MÚSICA - INTERAÇÃO AO ROLAR OU CLICAR ──
+  const audio = document.getElementById('musica-fundo');
+  const btn = document.getElementById('btn-musica');
+
+  const iniciarMusica = () => {
+    audio.play().then(() => {
+      btn.innerHTML = '⏸️';
+      // Remove os eventos após a primeira interação para não repetir
+      document.body.removeEventListener('click', iniciarMusica);
+      document.body.removeEventListener('touchstart', iniciarMusica);
+      window.removeEventListener('scroll', iniciarMusica);
+    }).catch(e => console.log("Aguardando interação do usuário..."));
+  };
+
+  // Escuta clique, toque na tela e rolagem da página
+  document.body.addEventListener('click', iniciarMusica);
+  document.body.addEventListener('touchstart', iniciarMusica);
+  window.addEventListener('scroll', iniciarMusica);
+
+  // Função do botão manual
+  window.tocarMusica = function() {
+    if (audio.paused) {
+      audio.play();
+      btn.innerHTML = '⏸️';
     } else {
-        // Pausa o vídeo
-        iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
-        btn.innerHTML = '🎵';
+      audio.pause();
+      btn.innerHTML = '🎵';
     }
   }
-
-    const iniciarAudio = function() {
-      const audio = document.getElementById('musica-fundo');
-      const btn = document.getElementById('btn-musica');
-      audio.play().then(() => {
-        btn.innerHTML = '⏸️';
-        document.body.removeEventListener('click', iniciarAudio);
-        document.body.removeEventListener('touchstart', iniciarAudio);
-      }).catch(e => console.log("Aguardando interação do usuário..."));
-    };
-
-    document.body.addEventListener('click', iniciarAudio);
-    document.body.addEventListener('touchstart', iniciarAudio);
-    
     // ── NAVEGAÇÃO E FORMULÁRIO ──
     window.ir = function(id) {
       document.querySelectorAll('.tela').forEach(t => t.classList.remove('ativa'));
