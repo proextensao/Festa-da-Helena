@@ -258,9 +258,38 @@
         margin-top: 20px;
       }
     }
+    /* ── BOTÃO DE MÚSICA FLUTUANTE ── */
+    .musica-flutuante {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: linear-gradient(to bottom, #ff5eb0, #e91e8c);
+      color: white;
+      border: 3px solid #fff;
+      border-radius: 50%;
+      width: 55px;
+      height: 55px;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(233, 30, 140, 0.4);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s;
+    }
+    .musica-flutuante:active {
+      transform: scale(0.9);
+    }
   </style>
 </head>
 <body>
+  <audio id="musica-fundo" loop>
+    <source src="musica.mp3" type="audio/mpeg">
+  </audio>
+  <button id="btn-musica" class="musica-flutuante" onclick="tocarMusica()">
+    🎵
+  </button>
 <div class="card">
 
   <!-- ══ TELA: CONVITE ══ -->
@@ -382,6 +411,43 @@
 
   const SENHA_ADMIN = "helena8";
   let vemEscolha = null;
+  // Função que o botão vai usar para pausar/tocar
+  window.tocarMusica = function() {
+    const audio = document.getElementById('musica-fundo');
+    const btn = document.getElementById('btn-musica');
+    
+    if (audio.paused) {
+      audio.play();
+      btn.innerHTML = '⏸️';
+    } else {
+      audio.pause();
+      btn.innerHTML = '🎵';
+    }
+  }
+
+  // 🪄 O TRUQUE MÁGICO DO AUTOPLAY
+  // Fica esperando o convidado dar o primeiro toque na tela
+  const iniciarAudio = function() {
+    const audio = document.getElementById('musica-fundo');
+    const btn = document.getElementById('btn-musica');
+    
+    // Tenta dar o play
+    if (audio.paused) {
+      audio.play().then(() => {
+        btn.innerHTML = '⏸️'; // Muda o ícone avisando que está tocando
+      }).catch((erro) => {
+        console.log("O navegador bloqueou o áudio até o usuário interagir mais.");
+      });
+    }
+    
+    // Depois que tocar a primeira vez, a gente remove esse "espião" para não dar erro
+    document.body.removeEventListener('click', iniciarAudio);
+    document.body.removeEventListener('touchstart', iniciarAudio);
+  };
+
+  // Ativa o espião de toques na tela inteira
+  document.body.addEventListener('click', iniciarAudio);
+  document.body.addEventListener('touchstart', iniciarAudio);
 
   // Como estamos usando "module", precisamos atrelar as funções ao "window" para o HTML enxergar
   window.ir = function(id) {
