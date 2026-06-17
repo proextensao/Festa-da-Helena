@@ -6,7 +6,53 @@
   <title>🦕 Festa da Helena – 8 Anos!</title>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        /* ── ESTILOS PARA A IMAGEM DO CONVITE ── */
+    .convite-imagem-container {
+      position: relative;
+      width: 100%;
+      max-width: 500px; /* Largura máxima para não ficar gigante no PC */
+      margin: 0 auto;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 15px 40px rgba(150, 50, 200, 0.3);
+    }
+
+    .imagem-fundo {
+      width: 100%;
+      display: block;
+    }
+
+    /* Botões invisíveis que ficam por cima da imagem */
+    .btn-invisivel {
+      position: absolute;
+      background: rgba(255, 255, 255, 0); /* Mude o 0 para 0.5 se quiser ver onde eles estão para testar */
+      cursor: pointer;
+      border-radius: 15px;
+    }
+
+    .zona-mapa {
+      top: 67%; /* Altura do botão do mapa */
+      left: 36%;
+      width: 28%;
+      height: 7%;
+    }
+
+    .zona-confirmar {
+      top: 64%; /* Altura do botão de confirmar */
+      left: 68%;
+      width: 29%;
+      height: 7%;
+    }
+
+    /* Área do Admin discretamente abaixo da imagem */
+    .admin-secreto {
+      max-width: 500px;
+      margin: 15px auto 0;
+      padding: 10px;
+      background: rgba(255,255,255,0.8);
+      border-radius: 15px;
+    }
+
 
     body {
       font-family: 'Nunito', sans-serif;
