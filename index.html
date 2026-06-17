@@ -340,21 +340,19 @@
     const SENHA_ADMIN = "helena8";
     let vemEscolha = null;
 
-  // ── LÓGICA DA MÚSICA - INTERAÇÃO COM YOUTUBE ──
+ // ── GATILHO MAIS OTIMIZADO PARA O YOUTUBE ──
   const iframe = document.getElementById('video-youtube');
   const btn = document.getElementById('btn-musica');
 
-  const liberarMusica = () => {
+  const ativarSom = () => {
     iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
     btn.innerHTML = '⏸️';
-    document.body.removeEventListener('click', liberarMusica);
-    document.body.removeEventListener('touchstart', liberarMusica);
-    window.removeEventListener('scroll', liberarMusica);
   };
 
-  document.body.addEventListener('click', liberarMusica);
-  document.body.addEventListener('touchstart', liberarMusica);
-  window.addEventListener('scroll', liberarMusica);
+  // Usamos 'once: true' para disparar apenas na primeira interação
+  document.body.addEventListener('click', ativarSom, { once: true });
+  document.body.addEventListener('touchstart', ativarSom, { once: true });
+  window.addEventListener('scroll', ativarSom, { once: true });
 
   window.tocarMusica = function() {
     if (btn.innerHTML === '🎵') {
