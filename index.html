@@ -7,15 +7,37 @@
   <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
   <style>
         /* ── ESTILOS PARA A IMAGEM DO CONVITE ── */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      min-height: 100vh;
+      background: radial-gradient(circle at top center, #ffcbe6 0%, #e2bbfd 50%, #b8e3ff 100%);
+      display: flex;
+      align-items: flex-start; /* Força o conteúdo a colar no topo */
+      justify-content: center;
+      padding: 0; /* Tira as margens do navegador */
+      margin: 0;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 0; /* Tira as bordas redondas no celular */
+      padding: 20px 15px; /* Mantém o respiro apenas para a tela do formulário */
+      width: 100%;
+      max-width: 500px;
+      min-height: 100vh; /* Faz o fundo branco esticar até o final */
+      box-shadow: 0 15px 40px rgba(150, 50, 200, 0.3);
+      border: none;
+    }
+
+    /* ── ESTILOS PARA A IMAGEM DO CONVITE ── */
     .convite-imagem-container {
       position: relative;
-      width: 100%;
-      max-width: 500px; /* Largura máxima para não ficar gigante no PC */
-      margin: 0 auto;
-      border-radius: 20px;
+      width: calc(100% + 30px); /* Compensa as margens e ignora as laterais */
+      margin: -20px -15px 20px -15px; /* Puxa a imagem para colar nas bordas do teto e laterais */
       overflow: hidden;
-      box-shadow: 0 15px 40p
-        x rgba(150, 50, 200, 0.3);
+      display: block;
     }
 
     .imagem-fundo {
@@ -26,169 +48,115 @@
     /* Botões invisíveis que ficam por cima da imagem */
     .btn-invisivel {
       position: absolute;
-      background: rgba(255, 255, 255, 0); /* Mude o 0 para 0.5 se quiser ver onde eles estão para testar */
+      background: rgba(255, 255, 255, 0); /* Troque 0 por 0.5 se quiser que eles fiquem visíveis para testar */
       cursor: pointer;
       border-radius: 15px;
     }
 
     .zona-mapa {
-      top: 67%; /* Altura do botão do mapa */
-      left: 36%;
-      width: 28%;
-      height: 7%;
+      top: 67%; 
+      left: 34.5%;
+      width: 31%;
+      height: 6.5%;
     }
 
     .zona-confirmar {
-      top: 64%; /* Altura do botão de confirmar */
+      top: 64.5%; 
       left: 68%;
       width: 29%;
-      height: 7%;
+      height: 6.5%;
     }
 
     /* Área do Admin discretamente abaixo da imagem */
     .admin-secreto {
-      max-width: 500px;
-      margin: 15px auto 0;
+      margin: 10px auto 0;
       padding: 10px;
-      background: rgba(255,255,255,0.8);
-      border-radius: 15px;
+      text-align: center;
     }
+    .admin-section { padding-top: 15px; border-top: 2px dotted #f9a8d4; }
+    .admin-label { font-size: 12px; color: #a1a1aa; margin-bottom: 10px; font-weight: 700;}
+    .admin-row { display: flex; gap: 8px; justify-content: center; }
 
+    /* ── FORMULÁRIO E RESTANTE DAS TELAS ── */
+    .back-btn { background: none; border: none; color: #a855f7; cursor: pointer; font-family: 'Fredoka One', cursive; font-size: 14px; margin-bottom: 14px; padding: 0; }
+    .form-emoji { font-size: 52px; text-align: center; display: block; margin-bottom: 5px; }
+    
+    h2.form-title { font-family: 'Fredoka One', cursive; color: #c026a8; text-align: center; font-size: 26px; margin-bottom: 20px; }
 
-    body {
-      font-family: 'Nunito', sans-serif;
-      min-height: 100vh;
-      /* Fundo vibrante inspirado no cartaz */
-      background: radial-gradient(circle at top center, #ffcbe6 0%, #e2bbfd 50%, #b8e3ff 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
+    label.field-label { display: block; font-size: 14px; font-weight: 800; color: #7c3aed; margin-bottom: 8px; margin-top: 18px; }
+
+    input[type="text"], input[type="password"], input[type="number"], textarea {
+      width: 100%; border: 2px solid #e9d5f5; border-radius: 16px; padding: 14px;
+      font-family: 'Nunito', sans-serif; font-size: 15px; font-weight: 700; color: #333;
+      background: #fff; outline: none; transition: all 0.2s; box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
     }
+    input:focus, textarea:focus { border-color: #ff6bb5; box-shadow: 0 0 0 4px rgba(255, 107, 181, 0.2); }
+    textarea { resize: vertical; height: 90px; }
 
-    .card {
-      background: rgba(255, 255, 255, 0.95);
-      border-radius: 35px;
-      padding: 35px 25px;
-      max-width: 450px;
+    .toggle-row { display: flex; gap: 10px; margin-bottom: 5px; }
+    .toggle-btn {
+      flex: 1; padding: 14px 0; border-radius: 16px; border: 2px solid #e9d5f5;
+      background: #fff; color: #999; font-family: 'Fredoka One', cursive; font-size: 15px;
+      cursor: pointer; transition: all 0.15s;
+    }
+    .toggle-btn.active { border-color: #ff6bb5; background: #fff0f5; color: #c026a8; transform: scale(1.02); box-shadow: 0 4px 10px rgba(255, 107, 181, 0.2);}
+    .num-row { display: flex; gap: 15px; }
+    .num-row > div { flex: 1; }
+
+    /* ── BOTOES ROSAS GERAIS ── */
+    .btn-pink {
+      display: inline-block;
       width: 100%;
-      box-shadow: 0 15px 40px rgba(150, 50, 200, 0.3);
-      border: 4px solid #fff;
-    }
-
-    /* ── TELA: CONVITE ── */
-    .dino-header {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 10px;
-      position: relative;
-    }
-
-    .eyebrow {
-      font-family: 'Fredoka One', cursive;
-      font-size: 16px;
+      background: linear-gradient(to bottom, #ff5eb0, #e91e8c);
       color: #fff;
-      background: #ff479c;
-      padding: 8px 20px;
+      border: 3px solid #fff;
       border-radius: 25px;
-      letter-spacing: 1px;
+      padding: 16px 20px;
+      font-family: 'Fredoka One', cursive;
+      font-size: 18px;
+      cursor: pointer;
+      box-shadow: 0 6px 0 #b30f66, 0 10px 20px rgba(233, 30, 140, 0.4);
+      transition: all 0.1s;
+      text-align: center;
       text-transform: uppercase;
-      text-align: center;
-      box-shadow: 0 4px 10px rgba(255, 71, 156, 0.4);
-      transform: rotate(-2deg);
-      margin-bottom: -10px;
-      z-index: 2;
-      border: 2px solid #fff;
+      letter-spacing: 1px;
     }
+    .btn-pink:hover { transform: translateY(2px); box-shadow: 0 4px 0 #b30f66, 0 8px 15px rgba(233, 30, 140, 0.4); }
+    .btn-pink:active { transform: translateY(6px); box-shadow: 0 0 0 #b30f66; }
+    .btn-pink:disabled { background: #ccc; box-shadow: 0 6px 0 #999; cursor: not-allowed; border-color: #eee; color: #fff; }
 
-    h1.title {
-      font-family: 'Fredoka One', cursive;
-      text-align: center;
-      color: #ff6bb5;
-      font-size: 42px;
-      margin: 15px 0 5px;
-      /* Efeito 3D de doce igual ao cartaz */
-      text-shadow: 
-        -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff, 2px 2px 0 #fff,
-        0px 5px 0px #c026a8;
-      line-height: 1.1;
-    }
+    /* ── SUCESSO ── */
+    .sucesso-emoji { font-size: 80px; text-align: center; display: block; margin-bottom: 10px; animation: bounce 1s infinite alternate; }
+    .sucesso-title { font-family: 'Fredoka One', cursive; color: #c026a8; text-align: center; font-size: 30px; margin-bottom: 15px; }
+    .sucesso-text { text-align: center; color: #7c3aed; font-weight: 700; line-height: 1.6; font-size: 15px; }
+    .sucesso-info { text-align: center; font-size: 13px; color: #a1a1aa; margin-top: 15px; font-weight: 700;}
 
-    .subtitle {
-      text-align: center;
-      color: #5b21b6;
-      font-size: 14px;
-      font-weight: 700;
-      line-height: 1.6;
-      margin: 10px 0 20px;
-    }
-    .subtitle strong { color: #d946a8; font-family: 'Fredoka One', cursive; font-weight: normal; font-size: 15px;}
+    /* ── ADMIN PAINEL ── */
+    .stats-row { display: flex; gap: 10px; margin-bottom: 20px; }
+    .stat-box { flex: 1; border-radius: 16px; padding: 15px 8px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.05);}
+    .stat-num { font-family: 'Fredoka One', cursive; font-size: 34px; color: #7c3aed; display: block; line-height: 1;}
+    .stat-lbl { font-size: 12px; color: #6b7280; font-weight: 800; display: block; margin-top: 5px; text-transform: uppercase;}
 
-    .info-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-bottom: 15px;
-    }
+    .resposta-card { border-radius: 16px; padding: 15px; margin-bottom: 12px; }
+    .resposta-card.sim { background: #ecfdf5; border: 2px solid #6ee7b7; }
+    .resposta-card.nao { background: #fef2f2; border: 2px solid #fca5a5; }
+    .resposta-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;}
+    .resposta-nome { font-weight: 800; color: #1f2937; font-size: 15px; }
+    .badge { border-radius: 10px; padding: 4px 10px; font-size: 11px; font-weight: 800; text-transform: uppercase;}
+    .badge.sim { background: #10b981; color: #fff; }
+    .badge.nao { background: #ef4444; color: #fff; }
+    .resposta-detail { font-size: 13px; color: #4b5563; font-weight: 700;}
+    .resposta-recado { font-size: 13px; color: #6b7280; font-style: italic; margin-top: 8px; background: rgba(255,255,255,0.5); padding: 8px; border-radius: 8px;}
+    .resposta-data { font-size: 11px; color: #9ca3af; margin-top: 8px; font-weight: 600;}
+    .empty-msg { text-align: center; color: #9ca3af; font-size: 15px; padding: 30px 0; font-weight: 700;}
 
-    .info-box {
-      background: #fff0f5;
-      border-radius: 20px;
-      padding: 12px;
-      font-size: 13px;
-      color: #86198f;
-      border: 2px dashed #ff99cc;
-      text-align: center;
-      line-height: 1.4;
-      box-shadow: inset 0 0 10px rgba(255,255,255,0.8);
-    }
-    .info-box strong { display: block; font-family: 'Fredoka One', cursive; font-size: 15px; font-weight: normal; color: #c026a8; margin-top: 4px;}
-    .info-box small { font-size: 11px; color: #a855f7; font-weight: 800;}
-    .info-box.full { grid-column: 1 / -1; background: #f5f3ff; border-color: #c4b5fd; color: #5b21b6; }
-    .info-box.full strong { color: #7c3aed; }
+    /* ── TRANSIÇÕES DE TELAS ── */
+    .tela { display: none; }
+    .tela.ativa { display: block; animation: scaleUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
 
-    /* Nova Seção: Dress Code (Baseado na imagem) */
-    .dress-code {
-      background: #fff7ed;
-      border: 2px dashed #fcd34d;
-      border-radius: 20px;
-      padding: 15px;
-      text-align: center;
-      margin-bottom: 20px;
-      position: relative;
-    }
-    .dress-code-title {
-      font-family: 'Fredoka One', cursive;
-      color: #ea580c;
-      font-size: 16px;
-      display: block;
-      margin-bottom: 5px;
-    }
-    .dress-code p {
-      font-size: 13px;
-      color: #9a3412;
-      font-weight: 700;
-      line-height: 1.4;
-    }
-    .dress-code strong { color: #e11d48; font-family: 'Fredoka One', cursive; font-weight: normal;}
+    @keyframes scaleUp { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+    @keyframes bounce { from { transform: translateY(0); } to { transform: translateY(-10px); } }
 
-    .map-link {
-      display: block;
-      text-align: center;
-      color: #fff;
-      font-size: 14px;
-      font-weight: 800;
-      text-decoration: none;
-      margin-bottom: 20px;
-      padding: 12px;
-      background: #a855f7;
-      border-radius: 18px;
-      border: 3px solid #e9d5ff;
-      box-shadow: 0 4px 0 #7c3aed;
-      transition: all 0.15s;
-    }
     .map-link:hover { transform: translateY(2px); box-shadow: 0 2px 0 #7c3aed; }
 
     .prazo-box {
