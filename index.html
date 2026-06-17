@@ -219,9 +219,13 @@
 <body>
 
  <!-- ══ TOCADOR DE MÚSICA ══ -->
-<audio id="musica-fundo" src="https://drive.google.com/uc?id=123nlOukwHA8tS53atxUxxCi5ZnTl2OGH" preload="auto" loop></audio>
-<button id="btn-musica" class="musica-flutuante" onclick="tocarMusica()">🎵</button>
+<div id="player-container" style="display:none;">
+    <iframe id="video-youtube" width="1" height="1" 
+            src="https://www.youtube.com/embed/KOdl7pRr7jA?autoplay=1&loop=1&playlist=KOdl7pRr7jA&enablejsapi=1" 
+            frameborder="0" allow="autoplay; encrypted-media"></iframe>
+</div>
 
+<button id="btn-musica" class="musica-flutuante" onclick="tocarMusica()">🎵</button>
   <div class="card">
     <!-- ══ TELA: CONVITE ══ -->
     <div id="tela-convite" class="tela ativa">
@@ -338,16 +342,20 @@
 
     // ── LÓGICA DA MÚSICA ──
     // ── LÓGICA DA MÚSICA ──
-    window.tocarMusica = function() {
-      const audio = document.getElementById('musica-fundo');
-      const btn = document.getElementById('btn-musica');
-      if (audio.paused) {
-        audio.play().then(() => { btn.innerHTML = '⏸️'; }).catch(e => console.log(e));
-      } else {
-        audio.pause();
+   window.tocarMusica = function() {
+    const btn = document.getElementById('btn-musica');
+    const iframe = document.getElementById('video-youtube');
+    
+    if (btn.innerHTML === '🎵') {
+        // Toca o vídeo
+        iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+        btn.innerHTML = '⏸️';
+    } else {
+        // Pausa o vídeo
+        iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
         btn.innerHTML = '🎵';
-      }
     }
+  }
 
     const iniciarAudio = function() {
       const audio = document.getElementById('musica-fundo');
